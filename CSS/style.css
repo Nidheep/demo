@@ -1,0 +1,18 @@
+.carousel-inner{
+    max-height: 400px;
+    background-color: black;
+}
+.container-fluid{
+    padding-left: 0%;
+    padding-right: 0%;
+}
+.carousel-inner img{
+    height: 400px;
+    object-fit: contain;
+}
+.contain{
+    background-size: contain;
+}
+.main-text-area{
+    
+}
