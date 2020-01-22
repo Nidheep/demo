@@ -44,3 +44,7 @@ body {
     font-family: "Helvetica Neue",sans-serif;
     font-weight: normal;
 }
+
+#contact .card:hover i,#contact .card:hover h4{
+	color: #87d37c;
+}
