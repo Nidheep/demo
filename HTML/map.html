@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 550px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+	   
+	   
+	   
+	   .mytestbtn {
+  background-color: #0B6623 !important;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.mytestbtn:hover {
+  background-color: green !important;
+  color: white!important;
+}
+
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+	
+    <script>
+
+function initMap() {
+
+	var caffeine ='<p align="center"><b fontsize="18">Caffeine Villa</b><br><br>Heritage Homecoming<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var soochipara = '<p align="center"><b fontsize="15">Soochipara Waterfalls</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 38km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>80 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var banasura = '<p align="center"><b fontsize="15">Banasura Sagar Dam</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 22.8<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var chembra = '<p align="center"><b fontsize="15">Chembra Peak</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 32<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var edakkal = '<p align="center"><b fontsize="15">Edakkal Caves</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var heritage = '<p align="center"><b fontsize="15">Heritage Museum</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var karlad = '<p align="center"><b fontsize="15">Karlad Lake</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var karapuzha = '<p align="center"><b fontsize="15">Karapuzha Dam</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var pookode = '<p align="center"><b fontsize="15">Pookode Lake</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var jaintemple = '<p align="center"><b fontsize="15">Jain Temple</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var meenmutty = '<p align="center"><b fontsize="15">Meenmutty Waterfalls</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var kandi900 = '<p align="center"><b fontsize="15">900 Kandi View Point </b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var brahmagiri = '<p align="center"><b fontsize="15">Brahmagiri View Point</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var kanthanpara = '<p align="center"><b fontsize="15">Kanthanpara Waterfalls</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var kurumbalakotta = '<p align="center"><b fontsize="15">Kurumbalakotta View Point</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var lakkidi = '<p align="center"><b fontsize="15">Lakkidi View Point</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var muthanga = '<p align="center"><b fontsize="15">Muthanga Wildlife Sanctuary</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var tholpetty = '<p align="center"><b fontsize="15">Tholpetty Wildlife Sanctuary</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var neelimala = '<p align="center"><b fontsize="15">Neelimala View Point</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var seethamakund = '<p align="center"><b fontsize="15">Seethamakund Waterfalls</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+	var kuruva = '<p align="center"><b fontsize="15">Kuruwa Island</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+		
+	var locations = [
+        {lat: 11.7049021, lng: 76.1065110 ,icon : 'cvlogo.png ',content : caffeine}, //caffeine
+        {lat: 11.51222, lng: 76.16306, content : soochipara },		//soochipara
+        {lat: 11.6700 , lng: 75.9578, content : banasura },			//banasura
+        {lat: 11.5118 , lng: 76.0887, content : chembra },			//chembra
+        {lat: 11.6268 , lng: 76.2343, content : edakkal },			//edakkal
+        {lat: 11.619392, lng:  76.210696, content : heritage },		//heritage museum
+        {lat: 11.650761, lng: 75.981676, content : karlad },		//karlad lake
+        {lat: 11.6182, lng :  76.1722, content : karapuzha },		//karapuzha
+        {lat: 11.5412, lng : 76.0218, content : pookode },			//pookode
+        {lat: 11.660204,lng: 76.250703, content : jaintemple },		//jain temple
+        {lat: 11.677606,lng: 75.935718, content : meenmutty },		//meenmutty banasura
+        {lat: 11.501464,lng: 76.112124, content : kandi900 },		//900 kandi
+        {lat: 11.932215,lng: 75.993869, content : brahmagiri},		//brahmagiri
+        {lat: 11.523939,lng: 76.152687, content : kanthanpara},		//kanthanpara
+        {lat: 11.698493,lng: 76.028305, content : kurumbalakotta},	//kurumbalakotta
+        {lat: 11.512226,lng: 76.018931, content : lakkidi},			//lakkidi 
+        {lat: 11.6691,lng: 76.3695, content : muthanga},			//muthanga 
+        {lat: 11.9516,lng: 76.0595, content : tholpetty},			//tholpetty
+        {lat: 11.534877,lng: 76.244403, content : neelimala},		//neelimala 
+        {lat: 11.487130,lng: 76.154411, content : seethamakund},	//seethamakund
+		{lat: 11.8217 ,lng: 76.0922, content : kuruva}				//kuruva
+		]
+	
+	
+
+	var infowindow = new google.maps.InfoWindow();
+	
+  
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 10.35, center: locations[0]});
+  
+  
+  var markers = locations.map(function(location) {
+          return new google.maps.Marker({
+            position: location,
+			map:map,
+			icon : location.icon,
+			content : location.content
+          });
+        });
+		
+		
+		markers.forEach(function(marker){
+			marker.addListener('mouseover', function() {
+			//map.setZoom(20);
+			//map.setCenter(marker.getPosition());
+			infowindow.setContent(marker.content);
+			infowindow.open(map, marker);
+			});
+		});
+		
+		var s=0;
+		markers.forEach(function(marker){
+			marker.addListener('click', function() {
+			//infowindow.close(map, marker);
+			infowindow.close(map,marker);
+			});
+			
+			map.addListener('click', function() {
+				infowindow.close(map, this);
+			});
+		});
+}
+	
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+	
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5tsSSmYPISKzi8AnMFsDwyZv_6RTkY2k&callback=initMap">
+    </script>
+  </body>
+</html>
