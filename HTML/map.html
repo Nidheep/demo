@@ -31,16 +31,16 @@
     </style>
   </head>
   <body>
-    <h3>My Google Maps Demo</h3>
+    <h1 align="center">Wayanad</h1>
     <!--The div element for the map -->
     <div id="map"></div>
 	
     <script>
-
+	
 function initMap() {
-
+	
 	var caffeine ='<p align="center"><b fontsize="18">Caffeine Villa</b><br><br>Heritage Homecoming<br><br>'+
-					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/index.html" target="_blank">Learn More>></a> </p>'
 	var soochipara = '<p align="center"><b fontsize="15">Soochipara Waterfalls</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 38km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>80 minutes<br><br>'+
 					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
 	var banasura = '<p align="center"><b fontsize="15">Banasura Sagar Dam</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 22.8<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
@@ -82,28 +82,40 @@ function initMap() {
 	var kuruva = '<p align="center"><b fontsize="15">Kuruwa Island</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> distance<br><i style="font-size:16px" class="fa">&#xf2f2;</i> time<br><br>'+
 					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="_blank">Learn More>></a> </p>'
 		
+		
+	var icon = 	{
+					caffeine: { url: '../images/Title/CV_logo1.png', scaledSize : new google.maps.Size(35,35)},
+					water : {url: 'http://maps.google.com/mapfiles/kml/shapes/water.png',scaledSize : new google.maps.Size(25,25)},
+					tree : {url: 'http://maps.google.com/mapfiles/kml/shapes/parks.png',scaledSize : new google.maps.Size(25,25)},
+					vpoint : {url: 'http://maps.google.com/mapfiles/kml/shapes/mountains.png',scaledSize : new google.maps.Size(25,25)},
+					history : {url: 'http://maps.google.com/mapfiles/kml/shapes/camera.png',scaledSize : new google.maps.Size(25,25)},
+					trek : {url: 'http://maps.google.com/mapfiles/kml/shapes/hiker.png',scaledSize : new google.maps.Size(25,25)}
+				}
+				
+	
+	
 	var locations = [
-        {lat: 11.7049021, lng: 76.1065110 ,icon :{ url: '../images/Title/CV_logo1.png', scaledSize : new google.maps.Size(35,35)},content : caffeine}, //caffeine
-        {lat: 11.51222, lng: 76.16306, content : soochipara },		//soochipara
-        {lat: 11.6700 , lng: 75.9578, content : banasura },			//banasura
-        {lat: 11.5118 , lng: 76.0887, content : chembra },			//chembra
-        {lat: 11.6268 , lng: 76.2343, content : edakkal },			//edakkal
-        {lat: 11.619392, lng:  76.210696, content : heritage },		//heritage museum
-        {lat: 11.650761, lng: 75.981676, content : karlad },		//karlad lake
-        {lat: 11.6182, lng :  76.1722, content : karapuzha },		//karapuzha
-        {lat: 11.5412, lng : 76.0218, content : pookode },			//pookode
-        {lat: 11.660204,lng: 76.250703, content : jaintemple },		//jain temple
-        {lat: 11.677606,lng: 75.935718, content : meenmutty },		//meenmutty banasura
-        {lat: 11.501464,lng: 76.112124, content : kandi900 },		//900 kandi
-        {lat: 11.932215,lng: 75.993869, content : brahmagiri},		//brahmagiri
-        {lat: 11.523939,lng: 76.152687, content : kanthanpara},		//kanthanpara
-        {lat: 11.698493,lng: 76.028305, content : kurumbalakotta},	//kurumbalakotta
-        {lat: 11.512226,lng: 76.018931, content : lakkidi},			//lakkidi 
-        {lat: 11.6691,lng: 76.3695, content : muthanga},			//muthanga 
-        {lat: 11.9516,lng: 76.0595, content : tholpetty},			//tholpetty
-        {lat: 11.534877,lng: 76.244403, content : neelimala},		//neelimala 
-        {lat: 11.487130,lng: 76.154411, content : seethamakund},	//seethamakund
-		{lat: 11.8217 ,lng: 76.0922, content : kuruva}				//kuruva
+        {lat: 11.7049021, lng: 76.1065110 ,icon : icon.caffeine, content : caffeine}, //caffeine
+        {lat: 11.51222, lng: 76.16306,icon: icon.water, content : soochipara },		//soochipara
+        {lat: 11.6700 , lng: 75.9578,icon: icon.water, content : banasura },			//banasura
+        {lat: 11.5118 , lng: 76.0887,icon: icon.trek, content : chembra },			//chembra
+        {lat: 11.6268 , lng: 76.2343,icon: icon.history, content : edakkal },			//edakkal
+        {lat: 11.619392, lng:  76.210696,icon: icon.history, content : heritage },		//heritage museum
+        {lat: 11.650761, lng: 75.981676,icon: icon.water, content : karlad },		//karlad lake
+        {lat: 11.6182, lng :  76.1722,icon: icon.water, content : karapuzha },		//karapuzha
+        {lat: 11.5412, lng : 76.0218,icon: icon.water, content : pookode },			//pookode
+        {lat: 11.660204,lng: 76.250703,icon: icon.history, content : jaintemple },		//jain temple
+        {lat: 11.677606,lng: 75.935718,icon: icon.water, content : meenmutty },		//meenmutty banasura
+        {lat: 11.501464,lng: 76.112124,icon: icon.vpoint, content : kandi900 },		//900 kandi
+        {lat: 11.932215,lng: 75.993869,icon: icon.trek, content : brahmagiri},		//brahmagiri
+        {lat: 11.523939,lng: 76.152687,icon: icon.water, content : kanthanpara},		//kanthanpara
+        {lat: 11.698493,lng: 76.028305,icon: icon.vpoint, content : kurumbalakotta},	//kurumbalakotta
+        {lat: 11.512226,lng: 76.018931,icon: icon.vpoint, content : lakkidi},			//lakkidi 
+        {lat: 11.6691,lng: 76.3695,icon: icon.tree, content : muthanga},			//muthanga 
+        {lat: 11.9516,lng: 76.0595,icon: icon.tree, content : tholpetty},			//tholpetty
+        {lat: 11.534877,lng: 76.244403,icon: icon.vpoint, content : neelimala},		//neelimala 
+        {lat: 11.487130,lng: 76.154411,icon: icon.water, content : seethamakund},	//seethamakund
+		{lat: 11.8217 ,lng: 76.0922,icon: icon.water, content : kuruva}				//kuruva
 		]
 	
 	
@@ -112,9 +124,12 @@ function initMap() {
 	
   
   var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 10.35, center: locations[0]});
+      document.getElementById('map'), {zoom: 10.35, center: locations[0],mapTypeId: google.maps.MapTypeId.ROADMAP});
   
-  
+	
+
+	
+	
   var markers = locations.map(function(location) {
           return new google.maps.Marker({
             position: location,
@@ -133,11 +148,9 @@ function initMap() {
 			infowindow.open(map, marker);
 			});
 		});
-		
-		var s=0;
+	
 		markers.forEach(function(marker){
 			marker.addListener('click', function() {
-			//infowindow.close(map, marker);
 			infowindow.close(map,marker);
 			});
 			
@@ -155,7 +168,8 @@ function initMap() {
     -->
 	
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5tsSSmYPISKzi8AnMFsDwyZv_6RTkY2k&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQKsPnroZnxGf_s1YiAxBX0fUgIxzP7AI&callback=initMap">   	//cv key: AIzaSyCQKsPnroZnxGf_s1YiAxBX0fUgIxzP7AI
+																													//swastha key : AIzaSyCQKsPnroZnxGf_s1YiAxBX0fUgIxzP7AI
     </script>
   </body>
 </html>
