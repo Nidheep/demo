@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Wayanad Attractions</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="../images/Title/CV_logo.png" type="image/png">
+	<script src="../JS/otherPage.js"></script>
+	<link rel="stylesheet" href="../CSS/otherPage.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+		integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous">
+	</script>
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 450px;  /* The height is 400 pixels */
+        width: 100%;		/* The width is the width of the web page */
+       }
+	   
+	   
+	   /*Learn More button*/
+	   .mytestbtn {
+			background-color: #0B6623 !important;
+			color: white;
+			padding: 5px 5px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+	}		
+
+.mytestbtn:hover {
+  background-color: green !important;
+  color: white!important;
+}
+
+
+ 
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+	  
+	   /*Centering button*/
+      #goCenterUI {
+        border-radius: 3px;
+		opacity : 0;
+        cursor: pointer;
+        float: center;
+        margin: 15px;
+		
+        text-align: center;
+      }
+      #goCenterText {
+        color: rgb(25,25,25);
+        font-family: Roboto,Arial,sans-serif;
+        font-size: 15px;
+		padding-top: 5px;
+      }
+
+	 
+
+
+
+
+.split1 {
+  height: 100%;
+  width: 70%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-y: hidden;
+}
+
+.split2{
+  height: 100%;
+  width: 30%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-y: hidden;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+	 
+    </style>
+  </head>
+  <body>
+    <div class="split1 left" >
+		<!--frame for displaying wayanad.html-->
+		<iframe height='100%' width='100%' name="splitframe" src="https://nidheep.github.io/demo/HTML/wayanad.html"></iframe>
+	</div>
+    <!--The div element for the map -->
+    <div class="split2 right">
+		<div id="map"></div>
+		
+		<div align ='center'>LEGEND<br>
+		<input type="checkbox" id="all" checked>
+		<label > ALL </label><br>
+		<input type="checkbox" id="lake" checked >
+		<label > Lake,Dam,Waterfall</label><br>
+		<input type="checkbox" id="trek" checked>
+		<label > Trek</label><br>
+		<input type="checkbox" id="historic" checked >
+		<label > Historic </label><br>
+		<input type="checkbox" id="forest" checked>
+		<label > Forest </label><br>
+		<input type="checkbox" id="point" checked>
+		<label > View point </label><br>
+		</div>
+	</div>
+	
+    <script>
+	
+	
+	
+	
+		  
+	  //centering button
+	  function CenterControl(controlDiv, map, center) {
+        // We set up a variable for this since we're adding event listeners
+        // later.
+        var control = this;
+
+        // Set the center property upon construction
+        control.center_ = center;
+        controlDiv.style.clear = 'both';
+
+        // Set CSS for the control border
+        var goCenterUI = document.createElement('div');
+        goCenterUI.id = 'goCenterUI';
+        goCenterUI.title = 'Click to recenter the map';
+        controlDiv.appendChild(goCenterUI);
+
+        // Set CSS for the control interior
+        var goCenterText = document.createElement('div');
+        goCenterText.id = 'goCenterText';
+        goCenterText.innerHTML = "<img src='../images/Title/CV_logo1.png' width='40' height='40'>";
+        goCenterUI.appendChild(goCenterText);
+
+
+		//re-center on evnet
+        goCenterUI.addEventListener('click', function() {
+			map.setCenter({lat: 11.7049021, lng: 76.1065110});
+			map.setZoom(10);
+			
+        });
+		
+   
+    }
+	
+//map	
+function initMap() {
+	
+	var caffeine ='<p align="center" class="info"><b fontsize="18">Caffeine Villa</b><br><br>Heritage Homecoming<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/index.html" target="_blank">Learn More>></a> </p>'
+	var soochipara = '<p align="center"><b fontsize="15">Soochipara Waterfalls</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 38km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>80 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Banasura#Pookode" targe="splitframe" >Learn More>></a> </p>'
+	var banasura = '<p align="center"><b fontsize="15">Banasura Sagar Dam</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 22.8<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  50 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Banasura" target="splitframe">Learn More>></a> </p>'
+	var chembra = '<p align="center"><b fontsize="15">Chembra Peak</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 32<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  62 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var edakkal = '<p align="center"><b fontsize="15">Edakkal Caves</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 23.6km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  55 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Edakkal" target="splitframe">Learn More>></a> </p>'
+	var heritage = '<p align="center"><b fontsize="15">Heritage Museum</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i>  18km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  42 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#HeritageMuseum" target="splitframe">Learn More>></a> </p>'
+	var karlad = '<p align="center"><b fontsize="15">Karlad Lake</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 21.1km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  45 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Karlad" target="splitframe">Learn More>></a> </p>'
+	var karapuzha = '<p align="center"><b fontsize="15">Karapuzha Dam</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i>  16.16<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  41 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Karappuzha" target="splitframe">Learn More>></a> </p>'
+	var pookode = '<p align="center"><b fontsize="15">Pookode Lake</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 28.3km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  47 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var jaintemple = '<p align="center"><b fontsize="15">Jain Temple</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 20km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  40 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#JainTemple" target="splitframe">Learn More>></a> </p>'
+	var meenmutty = '<p align="center"><b fontsize="15">Meenmutty Waterfalls</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 25km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  56 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Meenmutty" target="splitframe">Learn More>></a> </p>'
+	var kandi900 = '<p align="center"><b fontsize="15">900 Kandi View Point </b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 35.4km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  78 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var brahmagiri = '<p align="center"><b fontsize="15">Brahmagiri View Point</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 38.5km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  73 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var kanthanpara = '<p align="center"><b fontsize="15">Kanthanpara Waterfalls</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 33.7km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  63 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var kurumbalakotta = '<p align="center"><b fontsize="15">Kurumbalakotta View Point</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 14km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  30 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var lakkidi = '<p align="center"><b fontsize="15">Lakkidi View Point</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 32.2km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  51 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var muthanga = '<p align="center"><b fontsize="15">Muthanga Wildlife Sanctuary</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 35km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  60 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var tholpetty = '<p align="center"><b fontsize="15">Tholpetty Wildlife Sanctuary</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 39.2km<br><i style="font-size:16px" class="fa">&#xf2f2;</i>  69 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var neelimala = '<p align="center"><b fontsize="15">Neelimala View Point</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 31.1km<br><i style="font-size:16px" class="fa">&#xf2f2;</i> 62 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var seethamakund = '<p align="center"><b fontsize="15">Seethamakund Waterfalls</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 39.7km<br><i style="font-size:16px" class="fa">&#xf2f2;</i> 82 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Pookode" target="splitframe">Learn More>></a> </p>'
+	var kuruva = '<p align="center"><b fontsize="15">Kuruwa Island</b><br><i style="font-size:18px" class="fa">&#xf4d7;</i> 23km<br><i style="font-size:16px" class="fa">&#xf2f2;</i> 67 minutes<br><br>'+
+					  '<a class="mytestbtn" href="https://nidheep.github.io/demo/HTML/wayanad.html#Kuruvadweep" target="splitframe">Learn More>></a> </p>'
+		
+		
+	var icon = 	{
+					caffeine: { url: '../images/Title/CV_logo1.png', scaledSize : new google.maps.Size(35,35)},
+					water : {url: 'http://maps.google.com/mapfiles/kml/shapes/water.png',scaledSize : new google.maps.Size(25,25)},
+					tree : {url: 'http://maps.google.com/mapfiles/kml/shapes/parks.png',scaledSize : new google.maps.Size(25,25)},
+					vpoint : {url: 'http://maps.google.com/mapfiles/kml/shapes/mountains.png',scaledSize : new google.maps.Size(25,25)},
+					history : {url: 'http://maps.google.com/mapfiles/kml/shapes/camera.png',scaledSize : new google.maps.Size(25,25)},
+					trek : {url: 'http://maps.google.com/mapfiles/kml/shapes/hiker.png',scaledSize : new google.maps.Size(25,25)}
+				}
+				
+	
+	
+	var locations = [
+        {lat: 11.7049021, lng: 76.1065110 ,icon : icon.caffeine, content : caffeine}, //caffeine
+        {lat: 11.51222, lng: 76.16306,icon: icon.water, content : soochipara },		//soochipara
+        {lat: 11.6700 , lng: 75.9578,icon: icon.water, content : banasura },			//banasura
+        {lat: 11.5118 , lng: 76.0887,icon: icon.trek, content : chembra },			//chembra
+        {lat: 11.6268 , lng: 76.2343,icon: icon.history, content : edakkal },			//edakkal
+        {lat: 11.619392, lng:  76.210696,icon: icon.history, content : heritage },		//heritage museum
+        {lat: 11.650761, lng: 75.981676,icon: icon.water, content : karlad },		//karlad lake
+        {lat: 11.6182, lng :  76.1722,icon: icon.water, content : karapuzha },		//karapuzha
+        {lat: 11.5412, lng : 76.0218,icon: icon.water, content : pookode },			//pookode
+        {lat: 11.660204,lng: 76.250703,icon: icon.history, content : jaintemple },		//jain temple
+        {lat: 11.677606,lng: 75.935718,icon: icon.water, content : meenmutty },		//meenmutty banasura
+        {lat: 11.501464,lng: 76.112124,icon: icon.vpoint, content : kandi900 },		//900 kandi
+        {lat: 11.932215,lng: 75.993869,icon: icon.trek, content : brahmagiri},		//brahmagiri
+        {lat: 11.523939,lng: 76.152687,icon: icon.water, content : kanthanpara},		//kanthanpara
+        {lat: 11.698493,lng: 76.028305,icon: icon.vpoint, content : kurumbalakotta},	//kurumbalakotta
+        {lat: 11.512226,lng: 76.018931,icon: icon.vpoint, content : lakkidi},			//lakkidi 
+        {lat: 11.6691,lng: 76.3695,icon: icon.tree, content : muthanga},			//muthanga 
+        {lat: 11.9516,lng: 76.0595,icon: icon.tree, content : tholpetty},			//tholpetty
+        {lat: 11.534877,lng: 76.244403,icon: icon.vpoint, content : neelimala},		//neelimala 
+        {lat: 11.487130,lng: 76.154411,icon: icon.water, content : seethamakund},	//seethamakund
+		{lat: 11.8217 ,lng: 76.0922,icon: icon.water, content : kuruva}				//kuruva
+		]
+	
+	
+
+	var infowindow = new google.maps.InfoWindow();
+	
+  
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 10,center: locations[0],mapTypeId: google.maps.MapTypeId.ROADMAP});
+  
+	//centering button
+	var centerControlDiv = document.createElement('div');
+    var centerControl = new CenterControl(centerControlDiv, map, locations[0]);
+    centerControlDiv.index = 1;
+    centerControlDiv.style['padding-top'] = '10px';
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv);
+  
+  
+	//markers
+	var markers = locations.map(function(location) {
+          return new google.maps.Marker({
+            position: location,
+			map:map,
+			icon : location.icon,
+			content : location.content
+          });	
+        });
+		
+		//infowindow open
+		markers.forEach(function(marker){
+			marker.addListener('mouseover', function() {
+			infowindow.setContent(marker.content);
+			infowindow.open(map, marker);
+			});
+		});
+	
+		//infowindow close events
+		markers.forEach(function(marker){
+			marker.addListener('click', function() {
+			infowindow.close(map,marker);
+			});
+			
+			map.addListener('click', function() {
+				infowindow.close(map, this);
+				
+			});
+			map.addListener('mouseout', function() {
+				infowindow.close(map, this);
+			});
+			
+			
+		});
+		
+		
+		//re-center on resize of window
+		google.maps.event.addDomListener(window, 'resize', function() {
+			map.setCenter({lat: 11.7049021, lng: 76.1065110});
+		});
+	
+	
+	//centering visibility
+	new google.maps.Circle({});
+	google.maps.event.addListener(map, 'idle', function() {
+		if	((google.maps.geometry.spherical.computeDistanceBetween(map.getCenter(),new google.maps.LatLng(11.7049021,76.1065110))>= 10000)||(Math.abs(map.getZoom()-10)>= 1))
+			document.getElementById("goCenterUI").style.opacity = "1";
+		else
+			document.getElementById("goCenterUI").style.opacity = "0";
+			
+    });
+	
+	
+	
+	//checkboxes
+	function checkall()
+	{
+		if(trek.checked&&forest.checked&&lake.checked&&historic.checked&&point.checked)
+			all.checked=true;
+		else
+			all.checked=false;
+	}
+	all.addEventListener( 'change', function() {
+		if(all.checked) { 
+			markers.forEach(function(marker){
+				marker.setMap(map);
+			});
+		lake.checked=true;
+		trek.checked=true;
+		historic.checked=true;
+		forest.checked=true;
+		point.checked=true;
+		} else {
+			markers.forEach(function(marker){
+				marker.setMap(null);
+			});
+		lake.checked=false;
+		trek.checked=false;
+		historic.checked=false;
+		forest.checked=false;
+		point.checked=false;
+		}
+	});
+	lake.addEventListener( 'change', function() {
+		if(!lake.checked) {
+			markers[1].setMap(null);
+			markers[2].setMap(null);
+			markers[6].setMap(null);
+			markers[7].setMap(null);
+			markers[8].setMap(null);
+			markers[10].setMap(null);
+			markers[13].setMap(null);
+			markers[19].setMap(null);
+			markers[20].setMap(null);
+			checkall();
+		} else {
+			markers[1].setMap(map);
+			markers[2].setMap(map);
+			markers[6].setMap(map);
+			markers[7].setMap(map);
+			markers[8].setMap(map);
+			markers[10].setMap(map);
+			markers[13].setMap(map);
+			markers[19].setMap(map);
+			markers[20].setMap(map);
+			checkall();
+		}
+	});
+	trek.addEventListener( 'change', function() {
+		if(!trek.checked) {
+			markers[3].setMap(null);
+			markers[12].setMap(null);
+			checkall();
+		} else {
+			markers[3].setMap(map);
+			markers[12].setMap(map);
+			checkall();
+		}
+	});
+	forest.addEventListener( 'change', function() {
+		if(!forest.checked) {
+			markers[16].setMap(null);
+			markers[17].setMap(null);
+			checkall();
+		} else {
+			markers[16].setMap(map);
+			markers[17].setMap(map);
+			checkall();
+		}
+	});
+	point.addEventListener( 'change', function() {
+		if(!point.checked) {
+			markers[11].setMap(null);
+			markers[14].setMap(null);
+			markers[15].setMap(null);
+			markers[18].setMap(null);
+			checkall();
+		} else {
+			markers[11].setMap(map);
+			markers[14].setMap(map);
+			markers[15].setMap(map);
+			markers[18].setMap(map);
+			checkall();
+		}
+	});
+	historic.addEventListener( 'change', function() {
+		if(!historic.checked) {
+			markers[4].setMap(null);
+			markers[5].setMap(null);
+			markers[9].setMap(null);
+			checkall();
+		} else {
+			markers[4].setMap(map);
+			markers[5].setMap(map);
+			markers[9].setMap(map);
+			checkall();
+		}
+	});
+	
+	
+}
+
+
+	
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+	
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5tsSSmYPISKzi8AnMFsDwyZv_6RTkY2k&callback=initMap">   	//cv key: AIzaSyA5tsSSmYPISKzi8AnMFsDwyZv_6RTkY2k
+																													//swastha key : AIzaSyCQKsPnroZnxGf_s1YiAxBX0fUgIxzP7AI
+    </script>
+  </body>
+</html>
